@@ -1,0 +1,85 @@
+<div id="formulario2Container" class="popup-container">
+    <div id="formulario2" class="popup-content">
+        <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label for="Tdireccion">Tipo de dirección</label>
+                <select name="Tdireccion">
+                <option value="...">...</option>
+                    <option value="APARTADO AEREO">APARTADO AEREO</option>
+                    <option value="AUTOPISTA">AUTOPISTA</option>
+                    <option value="AVENIDA">AVENIDA</option>
+                    <option value="AVENIDA CALLE">AVENIDA CALLE</option>
+                    <option value="AVENIDA CARRERA">AVENIDA CARRERA</option>
+                    <option value="CALLE">CALLE</option>
+                    <option value="CARRERA">CARRERA</option>
+                    <option value="CARRETERA">CARRETERA</option>
+                    <option value="DIAGONAL">DIAGONAL</option>
+                    <option value="KILOMETRO">KILOMETRO</option>
+                    <option value="OTRO">OTRO</option>
+                    <option value="TRANSVERSAL">TRANSVERSAL</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numeroviaprincipal">Número vía principal</label>
+                <input type="text" name="numeroviaprincipal" required >
+            </div>
+            
+            <div class="form-group">
+            <label for="cartaprincipal">Carta principal</label>
+            <input type="text" name="cartaprincipal">
+            </div>
+
+            <div class="form-group">
+            <label for="caminoprincipalbis">Camino principal bis</label>
+            <input type="checkbox" name="caminoprincipalbis" value="Camino principal bis">           
+            </div> 
+
+            <div class="form-group">
+
+            <label for="cuadrantedelaviaprincipal">Cuadrante de la vía principal</label>
+            <select name="cuadrantedelaviaprincipal">
+                <option value="...">...</option>
+                <option value="Norte">Norte</option>
+                <option value="Sur">Sur</option>
+                <option value="Este">Este</option>
+                <option value="Oeste">Oeste</option>
+                <option value="Vacio">Vacio</option>
+            </select>
+
+            </div>
+
+            <div class="form-group">
+            <label for="numeroviasecundaria">Número vía secundaria</label>
+            <input type="text" name="numeroviasecundaria">
+            </div>
+            <div class="form-group">
+            <label for="cartadeviasecundaria">Carta de vía secundaria</label>
+            <input type="text" name="cartadeviasecundaria">
+            </div>
+            <div class="form-group">
+            <label for="viasecundaria">Vía secundaria</label>
+            <input type="checkbox" name="viasecundaria" value="viasecundaria">
+            </div>
+            <div class="form-group">
+            <label for="placa">Placa</label>
+            <input type="text" name="placa">
+            </div>
+            <div class="form-group">
+            <label for="cuadrantedelaviasecundaria">Cuadrante de la vía secundaria</label>
+            <select name="cuadrantedelaviasecundaria">
+               <option value="...">...</option>
+               <option value="Norte">Norte</option>
+               <option value="Sur">Sur</option>
+               <option value="Este">Este</option>
+               <option value="Oeste">Oeste</option>
+               <option value="Vacio">Vacio</option>
+            </select>
+
+            </div>
+
+
+            <input type="button" value="Enviar Direccion" id="enviarFormulario2">
+        </form>
+        <button id="cerrarFormulario2" class="popup-close">Cerrar</button>
+    </div>
+</div>

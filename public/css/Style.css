@@ -1,0 +1,154 @@
+/* Estilos para el popup 
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 500px; 
+    text-align: left;
+}
+
+.popup-content label {
+    margin-bottom: 5px;
+}
+
+.popup-content .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.popup-content .input-container label {
+    width: 30%; 
+}
+.popup-content .input-container input[type="text"],
+.popup-content .input-container select,
+.popup-content .input-container input[type="checkbox"] {
+    flex: 1;
+    padding: 5px;
+    margin-left: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup-close {
+    margin-top: 10px;
+    background: #ccc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+*/
+
+/* Estilos para el popup */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5rem;
+}
+
+.popup-content {
+    background: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.form-group {
+    padding-bottom: 10px;
+    position: relative;
+    margin: 8px 0 0;
+    align-self: center;
+    text-align: center;
+}
+.popup-content label {
+    margin-bottom: 5px;
+    width: 250px;
+}
+
+.popup-content .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 250px;
+}
+
+.popup-content .input-container label {
+    width: 30%; 
+}
+.popup-content .input-container input[type="text"],
+.popup-content .input-container select,
+.popup-content .input-container input[type="checkbox"] {
+    flex: 1;
+    padding: 5px;
+    margin-left: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px !important;
+}
+
+.popup-close {
+    margin-top: 10px;
+    background: #ccc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+#formulario2 input,
+#formulario2 select{
+    width: 250px;
+    border-radius: 10px;
+}
+
+#formulario2 input[type="checkbox"]{
+    width: 45px;
+}
+
+.popup-container {
+    display: none;
+}
+
+#enviarFormulario2{
+    width: 200px !important;
+    height: 35px;
+    background-color: #00BCD4;
+    color: #eee;
+    align-self: center;
+    justify-self: center;
+    transition: all .5s ease;
+}
+
+#enviarFormulario2:hover{
+    box-shadow: 0px 0px 10px #444;
+}
