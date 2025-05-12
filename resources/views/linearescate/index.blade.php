@@ -130,6 +130,7 @@
                 <div class="modal-body text-center">
                     <input type="hidden" id="cedulaAgente" name="cedulaAgente" value="{{ $user_id }}">
                     <input type="hidden" id="agente" name="agente" value="{{ $user_nombre }}">
+                    <input type="hidden" name="tipo" value="servicio_cliente">
 
                     <p class="text-muted">Muchas gracias por comunicarse con Movistar,
                         tenga presente que esta línea en la opción seleccionada es de uso exclusivo para operadores logístico,
@@ -357,6 +358,7 @@
 
                     <input type="hidden" id="cedulaAgente" name="cedulaAgente" value="{{ $user_id }}">
                     <input type="hidden" id="agente" name="agente" value="{{ $user_nombre }}">
+                    <input type="hidden" name="tipo" value="linea_rescate">
 
                     <hr>
                     <div class="modal-footer">

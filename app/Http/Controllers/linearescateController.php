@@ -105,6 +105,8 @@ class linearescateController extends Controller
         $linearescate->direccionReagendamiento = $request->get('direccionReagendamiento');
         $linearescate->tkReagendamiento = $request->get('tkReagendamiento');
 
+         $linearescate->tipo = $request->get('tipo') ?? 'linea_rescate';
+
 
         $linearescate->save();
 

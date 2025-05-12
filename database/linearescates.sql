@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2025 a las 23:38:50
+-- Tiempo de generación: 12-05-2025 a las 21:42:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,16 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `movistar`
 --
+-- JESUS EN CASO DADO AQUI TE DEJO LOS SCRIPTS DE LAS COLUMNAS NUEVAS
+
+-- dia
+
+-- ALTER TABLE linearescates
+-- MODIFY COLUMN dia DATE DEFAULT (CURRENT_DATE) NOT NULL;
+
+-- tipo
+-- ALTER TABLE linearescates ADD COLUMN tipo VARCHAR(50) DEFAULT NULL AFTER dia;
+
 
 -- --------------------------------------------------------
 
@@ -56,19 +66,50 @@ CREATE TABLE `linearescates` (
   `direccionReagendamiento` varchar(191) DEFAULT NULL,
   `tkReagendamiento` varchar(191) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `dia` date NOT NULL DEFAULT curdate(),
+  `tipo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `linearescates`
 --
 
-INSERT INTO `linearescates` (`id`, `nombreMotorizado`, `cedulaMotorizado`, `transportadora`, `lineaTitular`, `nOrden`, `nGuia`, `direccionRegistrada`, `ciudad`, `departamento`, `aliado`, `otros`, `tipoNovedad`, `motivoFuerzaMayor`, `tipificacion`, `SubTipificacion`, `valorEquipo`, `Observacion`, `simcard`, `idVision`, `reagendamientoImg`, `agente`, `cedulaAgente`, `lineaContactoMorotizado`, `HoraAtencionMotorizado`, `direccionReagendamiento`, `tkReagendamiento`, `created_at`, `updated_at`) VALUES
-(1, 'prueba', '1000034333', NULL, 'prueba', '1', '2', 'calle 1', 'Bogota', 'cundinamarca', 'ROBOT PHOENIX', NULL, 'FUERZA MAYOR', NULL, 'EXITOSA', 'ENTREGA EXITOSA', '4000', 'exitoso', 'NO', NULL, NULL, 'Administrador', '1000000000', '323232433544', '17:15', NULL, NULL, '2025-05-08 20:13:01', '2025-05-08 20:13:01'),
-(2, 'prueba', '20030030', NULL, 'Cris', '3', '5', 'calle 4', 'Bogota', 'cundinamarca', 'OTROS', NULL, 'CLIENTE AUSENTE', NULL, 'REAGENDAMIENTO', NULL, '4000', 'pruebita', 'NO', NULL, NULL, 'Administrador', '1000000000', '323232433544', '16:14', 'calle prueba', 'tk prueba', '2025-05-08 20:15:18', '2025-05-08 20:15:18'),
-(3, 'dandad', '2334432', NULL, 'sdada', 'dada', 'addad', 'daad', 'adadd', 'ada', 'OTROS', NULL, NULL, NULL, 'EXITOSA', 'ENTREGA EXITOSA', '5000', NULL, 'SI', NULL, NULL, 'Administrador', '1000000000', 'gdgdgd', '15:40', NULL, NULL, '2025-05-08 20:40:53', '2025-05-08 20:40:53'),
-(4, 'jesus', '2334432', NULL, 'sdada', 'dada', 'addad', 'daad', 'adadd', 'ada', 'OTROS', NULL, 'DOCUMENTO ERRADO', NULL, 'REAGENDAMIENTO', NULL, '5000', 'pruebita', 'SI', NULL, NULL, 'Administrador', '1000000000', 'gdgdgd', '18:31', 'calle prueba', 'tk prueba', '2025-05-08 21:30:50', '2025-05-08 21:30:50'),
-(5, 'dsd', '1222', NULL, 'sa', 'dsd', 'dsd', 'sdsd', 'dsd', 'dsds', NULL, NULL, NULL, NULL, 'EXITOSA', 'ENTREGA EXITOSA', '5000', 'pruebita', 'SI', NULL, NULL, 'Administrador', '1000000000', 'sdds', '17:33', NULL, NULL, '2025-05-08 21:33:47', '2025-05-08 21:33:47');
+INSERT INTO `linearescates` (`id`, `nombreMotorizado`, `cedulaMotorizado`, `transportadora`, `lineaTitular`, `nOrden`, `nGuia`, `direccionRegistrada`, `ciudad`, `departamento`, `aliado`, `otros`, `tipoNovedad`, `motivoFuerzaMayor`, `tipificacion`, `SubTipificacion`, `valorEquipo`, `Observacion`, `simcard`, `idVision`, `reagendamientoImg`, `agente`, `cedulaAgente`, `lineaContactoMorotizado`, `HoraAtencionMotorizado`, `direccionReagendamiento`, `tkReagendamiento`, `created_at`, `updated_at`, `dia`, `tipo`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 17:32:37', '2025-05-12 17:32:37', '0000-00-00', NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 17:33:05', '2025-05-12 17:33:05', '0000-00-00', NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-05', NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-12', NULL),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-12', NULL),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-18', NULL),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-25', NULL),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-02-03', NULL),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-02-03', NULL),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-02-10', NULL),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-02-17', NULL),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-02-24', NULL),
+(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-02', NULL),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-09', NULL),
+(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-09', NULL),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-15', NULL),
+(17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-22', NULL),
+(18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-01', NULL),
+(19, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-08', NULL),
+(20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-08', NULL),
+(21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-15', NULL),
+(22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-22', NULL),
+(23, 'dsd', '1222', 'Brightcell', 'sa', 'dsd', 'dsd', 'sdsd', 'dsd', 'dsds', 'ROBOT PHOENIX', NULL, 'ENTREGA SIM', NULL, 'EXITOSA', 'ENTREGA EXITOSA', '5000', 'pruebita', 'SI', NULL, NULL, 'Juan Pérez', '12345678', 'sdds', NULL, NULL, NULL, '2025-05-12 18:04:24', '2025-05-12 18:04:24', '2025-05-12', NULL),
+(24, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 18:05:25', '2025-05-12 18:05:25', '2025-05-12', NULL),
+(25, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:05:02', '2025-05-12 19:05:02', '2025-05-12', NULL),
+(26, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:13:26', '2025-05-12 19:13:26', '2025-05-12', 'servicio_cliente'),
+(27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:13:36', '2025-05-12 19:13:36', '2025-05-12', 'servicio_cliente'),
+(28, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:13:38', '2025-05-12 19:13:38', '2025-05-12', 'servicio_cliente'),
+(29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:17:33', '2025-05-12 19:17:33', '2025-05-12', 'servicio_cliente'),
+(30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:17:35', '2025-05-12 19:17:35', '2025-05-12', 'servicio_cliente'),
+(31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:17:38', '2025-05-12 19:17:38', '2025-05-12', 'servicio_cliente'),
+(32, 'dsd', '1222', 'Domesa', 'sa', 'dsd', 'dsd', 'sdsd', 'dsd', 'dsds', 'BECALL', NULL, 'DESTINATARIO DESCONOCIDO', NULL, 'EXITOSA', 'ENTREGA EXITOSA', '5000', 'pruebita', 'SI', NULL, NULL, 'Juan Pérez', '12345678', 'sdds', NULL, NULL, NULL, '2025-05-12 19:18:43', '2025-05-12 19:18:43', '2025-05-12', 'linea_rescate'),
+(33, 'dsd', '1222', 'Brightcell', 'sa', 'dsd', 'dsd', 'sdsd', 'dsd', 'dsds', 'BECALL', NULL, 'ENTREGA SIM', NULL, 'REAGENDAMIENTO', NULL, '5000', 'pruebita', 'SI', NULL, NULL, 'Juan Pérez', '12345678', 'sdds', NULL, 'calle prueba', 'tk prueba', '2025-05-12 19:23:18', '2025-05-12 19:23:18', '2025-05-12', 'linea_rescate'),
+(34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Juan Pérez', '12345678', NULL, NULL, NULL, NULL, '2025-05-12 19:23:56', '2025-05-12 19:23:56', '2025-05-12', 'servicio_cliente');
 
 --
 -- Índices para tablas volcadas
@@ -88,7 +129,7 @@ ALTER TABLE `linearescates`
 -- AUTO_INCREMENT de la tabla `linearescates`
 --
 ALTER TABLE `linearescates`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
