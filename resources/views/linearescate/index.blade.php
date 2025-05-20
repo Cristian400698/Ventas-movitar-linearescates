@@ -156,6 +156,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label><i class="fas fa-user"></i> NOMBRE MOTORIZADO</label>
@@ -274,16 +275,91 @@
                                     <!-- NUEVAS OPCIONES DE TIPO DE NOVEDAD -->
                                     <option value="DOCUMENTO ERRADO">DOCUMENTO ERRADO</option>
                                     <option value="ENTREGA SIM">ENTREGA SIM</option>
+                                    <!-- OPCIONES ADICIONALES DE DOCUMENTOS -->
+                                    <option value="DOCUMENTO_TITULAR">DOCUMENTO DEL TITULAR NOMBRE LINEA CELULAR</option>
+                                    <option value="DOCUMENTO_TERCERO">DOCUMENTO DEL TERCERO AUTORIZADO NOMBRE LINEA CELULAR</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6" id="motivo_fuerza_mayor">
+                        <div class="col-md-6" id="motivo_fuerza_mayor" style="display: none;">
                             <div class="form-group">
                                 <select name="motivoFuerzaMayor" class="custom-select">
                                     <option value="">MOTIVO FUERZA MAYOR</option>
                                     <option value="VIA CERRADA">VIA CERRADA</option>
                                     <option value="FUERTE LLUVIAS">FUERTE LLUVIAS</option>
                                     <option value="PAROS">PAROS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- CAMPOS PARA DOCUMENTO DEL TITULAR -->
+                        <div class="col-md-12" id="campos_titular" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-id-card"></i> DOCUMENTO DEL TITULAR</label>
+                                        <input type="number" name="documentoTitular"   class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-user"></i> NOMBRE DEL TITULAR</label>
+                                        <input type="text" name="nombreTitular" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-phone"></i> LÍNEA CELULAR DEL TITULAR</label>
+                                        <input type="number" name="lineaCelularTitular" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CAMPOS PARA DOCUMENTO DEL TERCERO AUTORIZADO -->
+                        <div class="col-md-12" id="campos_tercero" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-id-card"></i> DOCUMENTO DEL TERCERO</label>
+                                        <input type="number" name="documentoTercero" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-user"></i> NOMBRE DEL TERCERO</label>
+                                        <input type="text" name="nombreTercero" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-phone"></i> LÍNEA CELULAR DEL TERCERO</label>
+                                        <input type="number" name="lineaCelularTercero" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- NUEVO CAMPO: TIPO DE TERCERO -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select name="tipoTercero" class="custom-select" required>
+                                    <option value="">TIPO DE TERCERO</option>
+                                    <option value="TERCERO_AUTORIZADO">TERCERO AUTORIZADO</option>
+                                    <option value="TERCERO_NO_AUTORIZADO">TERCERO NO AUTORIZADO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- CAMPO DE ESTADO DEL MOTORIZADO -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select name="estadoMotorizado" class="custom-select" required>
+                                    <option value="">ESTADO DEL MOTORIZADO</option>
+                                    <option value="EN_PUNTO_ENTREGA">MOTORIZADO LLEGÓ AL PUNTO DE ENTREGA</option>
+                                    <option value="NO_EN_PUNTO_ENTREGA">MOTORIZADO NO ESTÁ EN EL PUNTO DE ENTREGA</option>
                                 </select>
                             </div>
                         </div>
@@ -308,8 +384,48 @@
                         <!-- Campo para valor de equipo (para EXITOSA y REAGENDAMIENTO) -->
                         <div id="valorEquipoDiv" class="col-md-12" style="display: none;">
                             <div class="form-group mt-3">
-                                <label for="valorEquipo">VALOR DE EQUIPO</label>
-                                <input type="text" class="form-control" name="valorEquipo" id="valorEquipo" placeholder="Ingrese el valor del equipo">
+                                <label for="modeloEquipo"><i class="fas fa-mobile-alt"></i> MODELO DE EQUIPO</label>
+                                <select class="form-control" name="modeloEquipo" id="modeloEquipo">
+                                    <option value="">Seleccione un modelo</option>
+                                    <option value="HONOR 200 SMART 5G 8+256GB" data-valor="$979,935">HONOR 200 SMART 5G 8+256GB</option>
+                                    <option value="HONOR 200 SMART 5G 8+256GB" data-valor="$979,935">HONOR 200 SMART 5G 8+256GB</option>
+                                    <option value="HONOR MAGIC 6 LITE 8+256GB 5G" data-valor="$1,699,935">HONOR MAGIC 6 LITE 8+256GB 5G</option>
+                                    <option value="HONOR MAGIC 6 LITE 8+256GB 5G" data-valor="$1,699,935">HONOR MAGIC 6 LITE 8+256GB 5G</option>
+                                    <option value="HONOR X5B PLUS 4+256GB" data-valor="$499,935">HONOR X5B PLUS 4+256GB</option>
+                                    <option value="IPHONE 13 128GB" data-valor="$4,339,929">IPHONE 13 128GB</option>
+                                    <option value="IPHONE 15 128GB" data-valor="$5,029,929">IPHONE 15 128GB</option>
+                                    <option value="IPHONE 15 PRO MAX 256GB" data-valor="$8,238,929">IPHONE 15 PRO MAX 256GB</option>
+                                    <option value="IPHONE 15E 128GB" data-valor="$3,238,929">IPHONE 15E 128GB</option>
+                                    <option value="MOTO EDGE 50 FUSION 5G 8+256GB" data-valor="$949,909">MOTO EDGE 50 FUSION 5G 8+256GB</option>
+                                    <option value="MOTO EDGE 50 FUSION 5G 8+256GB" data-valor="$949,909">MOTO EDGE 50 FUSION 5G 8+256GB</option>
+                                    <option value="MOTO EDGE 50 FUSION 5G 8+256GB" data-valor="$949,909">MOTO EDGE 50 FUSION 5G 8+256GB</option>
+                                    <option value="MOTO EDGE 50 FUSION 5G 8+256GB" data-valor="$949,909">MOTO EDGE 50 FUSION 5G 8+256GB</option>
+                                    <option value="MOTO G15 4+256GB" data-valor="$749,839">MOTO G15 4+256GB</option>
+                                    <option value="OPPO A80 8+256GB" data-valor="$999,839">OPPO A80 8+256GB</option>
+                                    <option value="OPPO A80 5G 8+256GB" data-valor="$999,839">OPPO A80 5G 8+256GB</option>
+                                    <option value="OPPO A80 5G 8+256GB" data-valor="$999,839">OPPO A80 5G 8+256GB</option>
+                                    <option value="OPPO A80 5G 8+256GB" data-valor="$999,839">OPPO A80 5G 8+256GB</option>
+                                    <option value="OPPO RENO 13 5G 12+512 GB" data-valor="$3,299,839">OPPO RENO 13 5G 12+512 GB</option>
+                                    <option value="OPPO RENO 13 5G 12+512 GB" data-valor="$3,299,839">OPPO RENO 13 5G 12+512 GB</option>
+                                    <option value="SAMSUNG GALAXY S25 5G 256GB" data-valor="$4,480,939">SAMSUNG GALAXY S25 5G 256GB</option>
+                                    <option value="SAMSUNG GALAXY S25 5G 256GB" data-valor="$4,480,939">SAMSUNG GALAXY S25 5G 256GB</option>
+                                    <option value="SAMSUNG GALAXY S25 5G 256GB" data-valor="$4,480,939">SAMSUNG GALAXY S25 5G 256GB</option>
+                                    <option value="SAMSUNG GALAXY S25 ULTRA 256GB 5G" data-valor="$6,427,939">SAMSUNG GALAXY S25 ULTRA 256GB 5G</option>
+                                    <option value="SAMSUNG GALAXY S25 ULTRA 256GB 5G" data-valor="$6,427,939">SAMSUNG GALAXY S25 ULTRA 256GB 5G</option>
+                                    <option value="SAMSUNG GALAXY S25 ULTRA 256GB 5G" data-valor="$6,427,939">SAMSUNG GALAXY S25 ULTRA 256GB 5G</option>
+                                    <option value="VIVO Y18 8+256GB" data-valor="$599,879">VIVO Y18 8+256GB</option>
+                                    <option value="VIVO Y18 8+256GB" data-valor="$599,879">VIVO Y18 8+256GB</option>
+                                    <option value="VIVO Y38 8+256GB" data-valor="$849,879">VIVO Y38 8+256GB</option>
+                                    <option value="VIVO Y38 8+256GB" data-valor="$849,879">VIVO Y38 8+256GB</option>
+                                    <option value="XIAOMI REDMI 13 8+256GB" data-valor="$599,889">XIAOMI REDMI 13 8+256GB</option>
+                                    <option value="XIAOMI REDMI NOTE 14 4G 8+256GB" data-valor="$1,049,889">XIAOMI REDMI NOTE 14 4G 8+256GB</option>
+                                    <option value="XIAOMI REDMI NOTE 14 5G 8+256GB" data-valor="$1,049,889">XIAOMI REDMI NOTE 14 5G 8+256GB</option>
+                                    <option value="XIAOMI REDMI NOTE 14 PRO 4G 8+256GB" data-valor="$1,349,889">XIAOMI REDMI NOTE 14 PRO 4G 8+256GB</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="valorEquipo"><i class="fas fa-dollar-sign"></i> VALOR DE EQUIPO</label>
+                                <input type="text" class="form-control" name="valorEquipo" id="valorEquipo" readonly>
                             </div>
                         </div>
 
@@ -388,17 +504,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mostrar/ocultar campo de "Motivo Fuerza Mayor"
     const tipoNovedadSelect = document.getElementById('tipo_novedad');
     const motivoFuerzaMayorDiv = document.getElementById('motivo_fuerza_mayor');
+    const camposTitularDiv = document.getElementById('campos_titular');
+    const camposTerceroDiv = document.getElementById('campos_tercero');
 
     tipoNovedadSelect.addEventListener('change', function() {
+        // Ocultar todos los campos especiales primero
+        motivoFuerzaMayorDiv.style.display = 'none';
+        camposTitularDiv.style.display = 'none';
+        camposTerceroDiv.style.display = 'none';
+
+
+        // Mostrar el campo correspondiente según la selección
         if (this.value === 'FUERZA MAYOR') {
             motivoFuerzaMayorDiv.style.display = 'block';
-        } else {
-            motivoFuerzaMayorDiv.style.display = 'none';
+        } else if (this.value === 'DOCUMENTO_TITULAR') {
+            camposTitularDiv.style.display = 'block';
+        } else if (this.value === 'DOCUMENTO_TERCERO') {
+            camposTerceroDiv.style.display = 'block';
         }
     });
 
-     // Referencio los elementos
-     const tipoGeneralSelect = document.getElementById('tipo_general');
+    // Función para actualizar automáticamente el valor del equipo
+    const modeloEquipoSelect = document.getElementById('modeloEquipo');
+    const valorEquipoInput = document.getElementById('valorEquipo');
+
+    if (modeloEquipoSelect) {
+        modeloEquipoSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const valor = selectedOption.getAttribute('data-valor');
+            valorEquipoInput.value = valor || '';
+        });
+    }
+
+    // Referencio los elementos
+    const tipoGeneralSelect = document.getElementById('tipo_general');
     const tipoEspecificoSelect = document.getElementById('tipo_especifico');
     const reagendamientoInputs = document.getElementById('reagendamientoInputs');
     const valorEquipoDiv = document.getElementById('valorEquipoDiv');
@@ -463,7 +602,23 @@ document.addEventListener('DOMContentLoaded', function() {
             else if (this.value === 'REAGENDAMIENTO') {
                 // Para reagendamiento, mostrar los campos específicos
                 valorEquipoDiv.style.display = 'block';
-                tipoEspecificoSelect.style.display = 'none';
+
+                // Agregar opción por defecto al select específico
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Seleccione una opción';
+                tipoEspecificoSelect.appendChild(defaultOption);
+
+                const opciones = ['ENTREGA EXITOSA', 'ENTREGA NO EXITOSA'];
+                opciones.forEach(opcion => {
+                    const option = document.createElement('option');
+                    option.value = opcion;
+                    option.textContent = opcion;
+                    tipoEspecificoSelect.appendChild(option);
+                });
+
+                // Mostrar tanto el select secundario como los campos de reagendamiento
+                tipoEspecificoSelect.style.display = 'block';
                 reagendamientoInputs.style.display = 'block';
             }
             else {

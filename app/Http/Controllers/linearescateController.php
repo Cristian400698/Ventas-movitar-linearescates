@@ -76,12 +76,36 @@ class linearescateController extends Controller
         $linearescate->ciudad = $request->get('ciudad');
         $linearescate->departamento = $request->get('departamento');
         $linearescate->aliado = $request->get('aliado');
+
+        // Campo "Otros Aliados" (cuando se selecciona OTROS)
+        if ($request->get('aliado') === 'OTROS') {
+            $linearescate->otrosAliados = $request->get('otrosAliados');
+        }
+
         $linearescate->tipoNovedad = $request->get('tipoNovedad');
         $linearescate->motivoFuerzaMayor = $request->get('motivoFuerzaMayor');
+
+        // Nuevos campos según tipo de novedad
+        if ($request->get('tipoNovedad') === 'DOCUMENTO_TITULAR') {
+            $linearescate->documentoTitular = $request->get('documentoTitular');
+            $linearescate->nombreTitular = $request->get('nombreTitular');
+            $linearescate->lineaCelularTitular = $request->get('lineaCelularTitular');
+        } elseif ($request->get('tipoNovedad') === 'DOCUMENTO_TERCERO') {
+            $linearescate->documentoTercero = $request->get('documentoTercero');
+            $linearescate->nombreTercero = $request->get('nombreTercero');
+            $linearescate->lineaCelularTercero = $request->get('lineaCelularTercero');
+        }
+
+        // Nuevos campos de tipo de tercero y estado del motorizado
+        $linearescate->tipoTercero = $request->get('tipoTercero');
+        $linearescate->estadoMotorizado = $request->get('estadoMotorizado');
+
         $linearescate->tipificacion = $request->get('tipificacion');
         $linearescate->SubTipificacion = $request->get('SubTipificacion');
+
+        $linearescate->modeloEquipo = $request->get('modeloEquipo');
         $linearescate->valorEquipo = $request->get('valorEquipo');
-        $linearescate->direccionReagendamiento= $request->get('direccionReagendamiento');
+        $linearescate->direccionReagendamiento = $request->get('direccionReagendamiento');
         $linearescate->tkReagendamiento = $request->get('tkReagendamiento');
         $linearescate->Observacion = $request->get('Observacion');
         $linearescate->simcard = $request->get('simcard');
@@ -102,11 +126,7 @@ class linearescateController extends Controller
         $linearescate->lineaContactoMorotizado = $request->get('lineaContactoMorotizado');
         $linearescate->HoraAtencionMotorizado = $request->get('HoraAtencionMotorizado');
 
-        $linearescate->direccionReagendamiento = $request->get('direccionReagendamiento');
-        $linearescate->tkReagendamiento = $request->get('tkReagendamiento');
-
-         $linearescate->tipo = $request->get('tipo') ?? 'linea_rescate';
-
+        $linearescate->tipo = $request->get('tipo') ?? 'linea_rescate';
 
         $linearescate->save();
 
