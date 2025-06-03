@@ -62,75 +62,134 @@ class linearescateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $linearescate = new linearescate();
+   public function store(Request $request)
+{
+    $linearescate = new linearescate();
 
-        $linearescate->nombreMotorizado = $request->get('nombreMotorizado');
-        $linearescate->cedulaMotorizado = $request->get('cedulaMotorizado');
-        $linearescate->transportadora = $request->get('transportadora');
-        $linearescate->lineaTitular = $request->get('lineaTitular');
-        $linearescate->nOrden = $request->get('nOrden');
-        $linearescate->nGuia = $request->get('nGuia');
-        $linearescate->direccionRegistrada = $request->get('direccionRegistrada');
-        $linearescate->ciudad = $request->get('ciudad');
-        $linearescate->departamento = $request->get('departamento');
-        $linearescate->aliado = $request->get('aliado');
+    // DETECTAR SI ES MODO OUT (campos con "2") O IN (campos normales)
+    $esOut = $request->get('tipoLlamada') === 'OUT';
 
-        // Campo "Otros Aliados" (cuando se selecciona OTROS)
-        if ($request->get('aliado') === 'OTROS') {
-            $linearescate->otrosAliados = $request->get('otrosAliados');
+    // FUNCIÓN HELPER PARA OBTENER VALOR SEGÚN EL MODO
+    $getValue = function($field) use ($request, $esOut) {
+        if ($esOut) {
+            // Modo OUT: buscar campo con "2" primero, luego sin "2"
+            $value = $request->get($field . '2');
+            if (empty($value)) {
+                $value = $request->get($field);
+            }
+        } else {
+            // Modo IN: usar campo normal
+            $value = $request->get($field);
         }
 
-        $linearescate->tipoNovedad = $request->get('tipoNovedad');
-        $linearescate->motivoFuerzaMayor = $request->get('motivoFuerzaMayor');
+        return $value;
+    };
 
-        // Nuevos campos según tipo de novedad
-        if ($request->get('tipoNovedad') === 'DOCUMENTO_TITULAR') {
-            $linearescate->documentoTitular = $request->get('documentoTitular');
-            $linearescate->nombreTitular = $request->get('nombreTitular');
-            $linearescate->lineaCelularTitular = $request->get('lineaCelularTitular');
-        } elseif ($request->get('tipoNovedad') === 'DOCUMENTO_TERCERO') {
-            $linearescate->documentoTercero = $request->get('documentoTercero');
-            $linearescate->nombreTercero = $request->get('nombreTercero');
-            $linearescate->lineaCelularTercero = $request->get('lineaCelularTercero');
+    // USAR LA FUNCIÓN HELPER PARA TODOS LOS CAMPOS
+    $linearescate->nombreMotorizado = $getValue('nombreMotorizado');
+    $linearescate->cedulaMotorizado = $getValue('cedulaMotorizado');
+    $linearescate->transportadora = $getValue('transportadora');
+    $linearescate->lineaTitular = $getValue('lineaTitular');
+    $linearescate->nOrden = $getValue('nOrden');
+    $linearescate->nGuia = $getValue('nGuia');
+    $linearescate->direccionRegistrada = $getValue('direccionRegistrada');
+    $linearescate->ciudad = $getValue('ciudad');
+    $linearescate->departamento = $getValue('departamento');
+    $linearescate->aliado = $getValue('aliado');
+
+    // Campo "Otros Aliados" (cuando se selecciona OTROS)
+    $aliado = $getValue('aliado');
+    if ($aliado === 'OTROS') {
+        $linearescate->otrosAliados = $getValue('otrosAliados');
+    }
+
+    $linearescate->tipoNovedad = $getValue('tipoNovedad');
+    $linearescate->motivoFuerzaMayor = $getValue('motivoFuerzaMayor');
+
+    // Nuevos campos según tipo de novedad
+    $tipoNovedad = $getValue('tipoNovedad');
+    if ($tipoNovedad === 'DOCUMENTO_TITULAR') {
+        $linearescate->documentoTitular = $getValue('documentoTitular');
+        $linearescate->nombreTitular = $getValue('nombreTitular');
+        $linearescate->lineaCelularTitular = $getValue('lineaCelularTitular');
+    } elseif ($tipoNovedad === 'DOCUMENTO_TERCERO') {
+        $linearescate->documentoTercero = $getValue('documentoTercero');
+        $linearescate->nombreTercero = $getValue('nombreTercero');
+        $linearescate->lineaCelularTercero = $getValue('lineaCelularTercero');
+    }
+
+    // Nuevos campos de tipo de tercero y estado del motorizado
+    $linearescate->tipoTercero = $getValue('tipoTercero');
+    $linearescate->estadoMotorizado = $getValue('estadoMotorizado');
+
+    $linearescate->tipificacion = $getValue('tipificacion');
+    $linearescate->SubTipificacion = $getValue('SubTipificacion');
+
+    $linearescate->modeloEquipo = $getValue('modeloEquipo');
+    $linearescate->valorEquipo = $getValue('valorEquipo');
+    $linearescate->direccionReagendamiento = $getValue('direccionReagendamiento');
+    $linearescate->tkReagendamiento = $getValue('tkReagendamiento');
+    $linearescate->Observacion = $getValue('Observacion');
+    $linearescate->simcard = $getValue('simcard');
+
+    // Manejo de archivos - también con campos "2" para OUT
+    if ($esOut) {
+        // Modo OUT: buscar archivos con "2"
+        if ($request->hasFile('idVision2')) {
+            $linearescate['idVision'] = $request->file('idVision2')->store('uploads', 'public');
         }
-
-        // Nuevos campos de tipo de tercero y estado del motorizado
-        $linearescate->tipoTercero = $request->get('tipoTercero');
-        $linearescate->estadoMotorizado = $request->get('estadoMotorizado');
-
-        $linearescate->tipificacion = $request->get('tipificacion');
-        $linearescate->SubTipificacion = $request->get('SubTipificacion');
-
-        $linearescate->modeloEquipo = $request->get('modeloEquipo');
-        $linearescate->valorEquipo = $request->get('valorEquipo');
-        $linearescate->direccionReagendamiento = $request->get('direccionReagendamiento');
-        $linearescate->tkReagendamiento = $request->get('tkReagendamiento');
-        $linearescate->Observacion = $request->get('Observacion');
-        $linearescate->simcard = $request->get('simcard');
-        $linearescate->idVision = $request->get('idVision');
-        $linearescate->reagendamientoImg = $request->get('reagendamientoImg');
-
+        if ($request->hasFile('reagendamientoImg2')) {
+            $linearescate['reagendamientoImg'] = $request->file('reagendamientoImg2')->store('uploads', 'public');
+        }
+    } else {
+        // Modo IN: usar archivos normales
         if ($request->hasFile('idVision')) {
             $linearescate['idVision'] = $request->file('idVision')->store('uploads', 'public');
         }
-
         if ($request->hasFile('reagendamientoImg')) {
             $linearescate['reagendamientoImg'] = $request->file('reagendamientoImg')->store('uploads', 'public');
         }
+    }
 
-        $linearescate->agente = $request->get('agente');
-        $linearescate->cedulaAgente = $request->get('cedulaAgente');
+    $linearescate->agente = $request->get('agente');
+    $linearescate->cedulaAgente = $request->get('cedulaAgente');
 
-        $linearescate->lineaContactoMorotizado = $request->get('lineaContactoMorotizado');
-        $linearescate->HoraAtencionMotorizado = $request->get('HoraAtencionMotorizado');
+    $linearescate->lineaContactoMorotizado = $getValue('lineaContactoMorotizado');
+    $linearescate->HoraAtencionMotorizado = $getValue('HoraAtencionMotorizado');
 
-        $linearescate->tipo = $request->get('tipo') ?? 'linea_rescate';
+    $linearescate->tipo = $request->get('tipo') ?? 'linea_rescate';
+    $linearescate->tipo_llamada = $request->get('tipoLlamada');
 
-        $linearescate->save();
+    $linearescate->save();
 
-        return redirect('linearescate')->with('success', 'Datos guardados correctamente. El número de ticket es: ' . $linearescate->id);
+    return redirect('linearescate')->with('success', 'Datos guardados correctamente. El número de ticket es: ' . $linearescate->id);
+}
+    // funcion para el out de linea de rescate
+
+      public function buscarUltimoRegistro($lineaTitular)
+    {
+        try {
+            $ultimoRegistro = linearescate::where('lineaTitular', $lineaTitular)
+                                        ->orderBy('created_at', 'desc')
+                                        ->first();
+
+            if ($ultimoRegistro) {
+                return response()->json([
+                    'success' => true,
+                    'registro' => $ultimoRegistro
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se encontró ningún registro para esta línea titular'
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al buscar el registro: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**

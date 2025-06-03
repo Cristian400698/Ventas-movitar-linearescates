@@ -353,6 +353,7 @@ Route::group(['middleware' => 'auth'], function () {
     /* INICIO LINEA RESCATE */
 
     Route::resource('linearescate', App\Http\Controllers\linearescateController::class);
+    Route::get('/buscar-ultimo-registro/{lineaTitular}', [linearescateController::class, 'buscarUltimoRegistro']);
 
     Route::get('exportlinres.excel', 'App\Http\Controllers\linearescateController@exportlinresExcel')->name('exportlinres.excel');
 
